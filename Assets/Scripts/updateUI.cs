@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class updateUI : MonoBehaviour
 {
@@ -10,6 +11,8 @@ public class updateUI : MonoBehaviour
     public static int scoreValue = 0;
     public static int health = 8;
     public TMP_Text info;
+
+    public Slider Slide;
     // Start is called before the first frame update
     void Start()
     {
@@ -38,6 +41,8 @@ public class updateUI : MonoBehaviour
             scoreValue = 10;
         }
         info.text = "Health: " + health.ToString() + "\nScore: " + scoreValue.ToString();
+        Slide.value = health;
+
     }
 
     void win()
