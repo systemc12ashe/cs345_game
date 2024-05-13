@@ -7,6 +7,8 @@ public class Helper : MonoBehaviour
 {
     [SerializeField] Transform target;
     public static NavMeshAgent agent;
+
+    public static bool isAvailable = true;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,5 +21,13 @@ public class Helper : MonoBehaviour
     void Update()
     {
         //agent.SetDestination(target.position);
+    }
+
+    private void OnTriggerEnter2D(Collider2D other) {
+        Debug.Log("collide");
+        if(other.gameObject.CompareTag("organ")) {
+            isAvailable = true;
+            Debug.Log("enter");
+        }
     }
 }

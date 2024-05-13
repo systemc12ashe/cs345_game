@@ -16,11 +16,15 @@ public class Organ : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     void OnMouseDown() {
         Debug.Log("organ");
-        Helper.agent.SetDestination(target.position);
+        if (Helper.isAvailable) {
+            Helper.agent.SetDestination(target.position);
+            Helper.isAvailable = false;
+        }
+        
     }
 }
