@@ -28,6 +28,7 @@ public class Helper : MonoBehaviour
         if(other.gameObject.CompareTag("organ")) {
             isAvailable = true;
             Debug.Log("enter");
+            //gameObject.SetActive(false);
             // Organ.numHelpers += 1;
             // Debug.Log(Organ.numHelpers);
         }
