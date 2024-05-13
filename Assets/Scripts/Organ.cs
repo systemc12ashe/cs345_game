@@ -7,6 +7,10 @@ public class Organ : MonoBehaviour
 {
     [SerializeField] Transform target;
 
+    public static bool isStart = false;
+
+    public static int numHelpers;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -16,11 +20,21 @@ public class Organ : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     void OnMouseDown() {
         Debug.Log("organ");
-        Helper.agent.SetDestination(target.position);
+        if(isStart) {
+            if (Helper.isAvailable) {
+                Helper.agent.SetDestination(target.position);
+                Helper.isAvailable = false;
+            }
+        } else {
+            isStart = true;
+
+        }
+        
+        
     }
 }

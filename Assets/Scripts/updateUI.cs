@@ -9,13 +9,13 @@ public class updateUI : MonoBehaviour
     public GameObject gameEndScreeen;
     public static int scoreValue = 0;
     public static int health = 8;
-    private TMP_Text info;
+    public TMP_Text info;
     // Start is called before the first frame update
     void Start()
     {
         health = 10;
         scoreValue = 0;
-        info = GetComponent<TMP_Text>();
+        info =GetComponentInChildren<TMP_Text>();
         if(info==null)
             Debug.Log("null reference!!!");
         
@@ -37,7 +37,7 @@ public class updateUI : MonoBehaviour
         {
             scoreValue = 10;
         }
-        info.text = "Score: " + scoreValue.ToString() + "\nHealth: " + health.ToString();
+        info.text = "Health: " + health.ToString() + "\nScore: " + scoreValue.ToString();
     }
 
     void win()
