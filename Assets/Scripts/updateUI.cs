@@ -15,7 +15,7 @@ public class updateUI : MonoBehaviour
     {
         health = 10;
         scoreValue = 0;
-        info = GetComponent<TMP_Text>();
+        info =GetComponentInChildren<TMP_Text>();
         if(info==null)
             Debug.Log("null reference!!!");
         
@@ -37,7 +37,7 @@ public class updateUI : MonoBehaviour
         {
             scoreValue = 10;
         }
-        info.text = "Score: " + scoreValue.ToString() + "\nHealth: " + health.ToString();
+        info.text = "Health: " + health.ToString() + "\nScore: " + scoreValue.ToString();
     }
 
     void win()
