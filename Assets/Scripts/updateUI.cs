@@ -9,7 +9,7 @@ public class updateUI : MonoBehaviour
     public GameObject gameEndScreeen;
     public static int scoreValue = 0;
     public static int health = 8;
-    private TMP_Text info;
+    public TMP_Text info;
     // Start is called before the first frame update
     void Start()
     {

@@ -4208,6 +4208,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameOverScreen: {fileID: 113156199}
   gameEndScreeen: {fileID: 1005844604}
+  info: {fileID: 392058444}
 --- !u!1 &1114015492
 GameObject:
   m_ObjectHideFlags: 0
