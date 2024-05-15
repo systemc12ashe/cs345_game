@@ -10,6 +10,7 @@ public class Organ : MonoBehaviour
     public static bool isStart = false;
 
     public static int numHelpers;
+    
 
     // Start is called before the first frame update
     void Start()
