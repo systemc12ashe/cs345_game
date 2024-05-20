@@ -11,16 +11,35 @@ public class Organ : MonoBehaviour
 
     public static int numHelpers;
 
+    public GameObject bacteriaInstance;
+
+    protected bool hasBacteria = false;
+
+    public float bacteriaSpawnTime;
+    public float bacteriaOnset;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+
+        InvokeRepeating("SpawnBacteria", bacteriaOnset, bacteriaSpawnTime);
+
+
+    }
+
+    void SpawnBacteria()
+    {
+        if (!hasBacteria) {
+            hasBacteria = true;
+            Debug.Log(gameObject.name);
+            Instantiate(bacteriaInstance, transform.position, transform.rotation);
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        
     }
 
     void OnMouseDown() {

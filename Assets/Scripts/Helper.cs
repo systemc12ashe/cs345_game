@@ -25,9 +25,12 @@ public class Helper : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other) {
         Debug.Log("collide");
-        if(other.gameObject.CompareTag("organ")) {
+        if(other.gameObject.CompareTag("organ") || other.gameObject.CompareTag("organInfected")) {
             isAvailable = true;
             Debug.Log("enter");
+            if(other.gameObject.CompareTag("organInfected")) {
+                Debug.Log("touch organ infected");
+            }
             // Organ.numHelpers += 1;
             // Debug.Log(Organ.numHelpers);
         }
