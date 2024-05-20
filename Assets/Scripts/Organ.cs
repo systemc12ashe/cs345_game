@@ -33,13 +33,16 @@ public class Organ : MonoBehaviour
             hasBacteria = true;
             Debug.Log(gameObject.name);
             Instantiate(bacteriaInstance, transform.position, transform.rotation);
+            gameObject.tag = "organInfected";
         }
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        // if (gameObject.CompareTag("organ")) {
+
+        // }
     }
 
     void OnMouseDown() {

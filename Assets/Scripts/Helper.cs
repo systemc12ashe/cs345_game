@@ -9,6 +9,8 @@ public class Helper : MonoBehaviour
     public static NavMeshAgent agent;
 
     public static bool isAvailable = true;
+
+    private Transform bacteria;
     // Start is called before the first frame update
     void Start()
     {
@@ -26,13 +28,16 @@ public class Helper : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other) {
         Debug.Log("collide");
         if(other.gameObject.CompareTag("organ") || other.gameObject.CompareTag("organInfected")) {
-            isAvailable = true;
+            
             Debug.Log("enter");
-            if(other.gameObject.CompareTag("organInfected")) {
-                Debug.Log("touch organ infected");
-            }
+            isAvailable = true;
             // Organ.numHelpers += 1;
             // Debug.Log(Organ.numHelpers);
         }
+        if(other.gameObject.CompareTag("bacteria")) {
+                Debug.Log("touch bacteria");
+                Destroy(other.gameObject);
+
+            }
     }
 }
