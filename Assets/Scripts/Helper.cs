@@ -8,7 +8,7 @@ public class Helper : MonoBehaviour
 {
     [SerializeField] Transform target;
     public NavMeshAgent agent;
-
+    private Transform bacteria;
     public bool isAvailable = true;
     // Start is called before the first frame update
     void Start()
@@ -32,12 +32,18 @@ public class Helper : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other) {
         Debug.Log("collide");
-        if(other.gameObject.CompareTag("organ")) {
-            isAvailable = true;
+        if(other.gameObject.CompareTag("organ") || other.gameObject.CompareTag("organInfected")) {
+            
             Debug.Log("enter");
+            isAvailable = true;
             // Organ.numHelpers += 1;
             // Debug.Log(Organ.numHelpers);
         }
+        if(other.gameObject.CompareTag("bacteria")) {
+                Debug.Log("touch bacteria");
+                Destroy(other.gameObject);
+
+            }
     }
 
 }

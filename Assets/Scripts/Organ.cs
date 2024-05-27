@@ -7,7 +7,11 @@ using UnityEngine.AI;
 public class Organ : MonoBehaviour
 {
     [SerializeField] Transform target;
+    public GameObject bacteriaInstance;
+    protected bool hasBacteria = false;
 
+    public float bacteriaSpawnTime;
+    public float bacteriaOnset;
     public bool isStart = true;
     public int numHelpers;
     public Stack<Helper> helperList;
@@ -15,6 +19,7 @@ public class Organ : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        InvokeRepeating("SpawnBacteria", bacteriaOnset, bacteriaSpawnTime);
         helperList = new Stack<Helper>();
         Helper[] allHelpers = FindObjectsOfType<Helper>();
         foreach (var helper in allHelpers)
@@ -26,7 +31,19 @@ public class Organ : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // if (gameObject.CompareTag("organ")) {
 
+        // }
+    }
+    
+    void SpawnBacteria()
+    {
+        if (!hasBacteria) {
+            hasBacteria = true;
+            Debug.Log(gameObject.name);
+            Instantiate(bacteriaInstance, transform.position, transform.rotation);
+            gameObject.tag = "organInfected";
+            }
     }
 
     private void OnTriggerEnter2D(Collider2D other)

@@ -258,6 +258,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 138812631}
+  bacteriaInstance: {fileID: 5646103624417222738, guid: 5284f0fad9d0c49879140b9a48e75546, type: 3}
+  bacteriaSpawnTime: 5
+  bacteriaOnset: 2
 --- !u!212 &138812630
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -497,7 +500,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.1792453, g: 0.0008454987, b: 0.0008454987, a: 1}
+  m_Color: {r: 0.13333334, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -1049,6 +1052,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 267683678}
+  bacteriaInstance: {fileID: 5646103624417222738, guid: 5284f0fad9d0c49879140b9a48e75546, type: 3}
+  bacteriaSpawnTime: 5
+  bacteriaOnset: 5
 --- !u!60 &267683680
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -5046,6 +5052,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 1419502013}
+  bacteriaInstance: {fileID: 5646103624417222738, guid: 5284f0fad9d0c49879140b9a48e75546, type: 3}
+  bacteriaSpawnTime: 5
+  bacteriaOnset: 8
 --- !u!212 &1419502012
 SpriteRenderer:
   m_ObjectHideFlags: 0
