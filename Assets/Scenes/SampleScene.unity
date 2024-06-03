@@ -1095,6 +1095,11 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &239681342 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 214056239498806077, guid: 161e590873c894624a1eca8047172eed, type: 3}
+  m_PrefabInstance: {fileID: 7070566888405241565}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &267683676
 GameObject:
   m_ObjectHideFlags: 0
@@ -7893,6 +7898,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1622659603 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2283354767831783061, guid: 161e590873c894624a1eca8047172eed, type: 3}
+  m_PrefabInstance: {fileID: 7070566888405241565}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1644640371
 GameObject:
   m_ObjectHideFlags: 0
@@ -8039,6 +8049,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   textLines: []
+  text: {fileID: 0}
 --- !u!1 &1693865296
 GameObject:
   m_ObjectHideFlags: 0
@@ -8837,7 +8848,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   textComponent: {fileID: 0}
-  currText: test sentence.
+  happyHelper: {fileID: 239681342}
+  textBox: {fileID: 1622659603}
 --- !u!1 &1979497907
 GameObject:
   m_ObjectHideFlags: 0
@@ -10065,6 +10077,10 @@ PrefabInstance:
       value: HappyHelper
       objectReference: {fileID: 0}
     - target: {fileID: 214056239498806077, guid: 161e590873c894624a1eca8047172eed, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2283354767831783061, guid: 161e590873c894624a1eca8047172eed, type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
