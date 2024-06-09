@@ -11,6 +11,8 @@ public class Organ : MonoBehaviour
     public bool isStart = true;
     public int numHelpers;
     public Stack<Helper> helperList;
+
+    public bool isBacteriaActive = false;
     
     // Start is called before the first frame update
     void Start()
