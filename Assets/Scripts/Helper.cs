@@ -10,6 +10,8 @@ public class Helper : MonoBehaviour
     public NavMeshAgent agent;
 
     public bool isAvailable = true;
+
+    private Transform bacteria;
     // Start is called before the first frame update
     void Start()
     {
@@ -35,6 +37,11 @@ public class Helper : MonoBehaviour
         if(other.gameObject.CompareTag("organ")) {
             isAvailable = true;
             Debug.Log("enter");
+        }
+
+        if(other.gameObject.CompareTag("bacteria")) {
+            Debug.Log("touch bacteria");
+            Destroy(other.gameObject);
         }
     }
 

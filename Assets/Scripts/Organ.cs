@@ -57,11 +57,14 @@ public class Organ : MonoBehaviour
         Debug.Log("organ");
         if(isStart) {
             Debug.Log("Yay?");
-            if (helperList.Peek().isAvailable) {
-                Debug.Log("Yay!");
-                helperList.Peek().agent.SetDestination(target.position);
-                helperList.Peek().isAvailable = false;
+            if (helperList.Count > 0) {
+                if (helperList.Peek().isAvailable) {
+                    Debug.Log("Yay!");
+                    helperList.Peek().agent.SetDestination(target.position);
+                    helperList.Peek().isAvailable = false;
             }
+            }
+            
         } else {
             isStart = true;
 
