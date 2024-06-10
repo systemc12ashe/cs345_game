@@ -37,12 +37,13 @@ public class Helper : MonoBehaviour
         if(other.gameObject.CompareTag("organ")) {
             isAvailable = true;
             Debug.Log("enter");
+            // other.gameObject.child.SetActive(false);
         }
 
-        if(other.gameObject.CompareTag("bacteria")) {
-            Debug.Log("touch bacteria");
-            Destroy(other.gameObject);
-        }
+        // if(other.gameObject.CompareTag("bacteria")) {
+        //     Debug.Log("touch bacteria");
+        //     other.gameObject.SetActive(false);
+        // }
     }
 
 }

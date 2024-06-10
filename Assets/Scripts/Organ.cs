@@ -15,7 +15,7 @@ public class Organ : MonoBehaviour
     public bool isBacteriaSpawnable = false;
     protected bool hasBacteria = false;
 
-    public GameObject bacteriaInstance;
+    public GameObject bacteriaObject;
 
     public float bacteriaSpawnTime = 0;
     public float bacteriaOnset = 0;
@@ -45,7 +45,10 @@ public class Organ : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        bacteriaObject.SetActive(false);
         helperList.Push(other.GetComponent<Helper>());
+
+        
     }
 
     private void OnTriggerExit2D(Collider2D other)
@@ -58,6 +61,7 @@ public class Organ : MonoBehaviour
         if(isStart) {
             Debug.Log("Yay?");
             if (helperList.Count > 0) {
+                Debug.Log(helperList.Peek().gameObject.name);
                 if (helperList.Peek().isAvailable) {
                     Debug.Log("Yay!");
                     helperList.Peek().agent.SetDestination(target.position);
@@ -78,7 +82,8 @@ public class Organ : MonoBehaviour
         if (!hasBacteria) {
             hasBacteria = true;
             Debug.Log(gameObject.name);
-            Instantiate(bacteriaInstance, transform.position, transform.rotation);
+            //Instantiate(bacteriaInstance, transform.position, transform.rotation);
+            bacteriaObject.SetActive(true);
         }
     }
 }
