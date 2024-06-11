@@ -1,8 +1,11 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.SceneManagement;
+using Random = System.Random;
 
 public class Organ : MonoBehaviour
 {
@@ -11,6 +14,7 @@ public class Organ : MonoBehaviour
     public bool isStart = true;
     public int numHelpers;
     public Stack<Helper> helperList;
+    public bool oxygenated = false;
 
     public bool isBacteriaSpawnable = false;
     protected bool hasBacteria = false;
@@ -21,10 +25,16 @@ public class Organ : MonoBehaviour
     public float bacteriaOnset = 0;
 
     
+    private float interval = 3.0f;
+    private float oxygenInterval = 4.0f;
+    private float oxygenTimer = 2.0f;
+    private float timer;
+    public GameObject oxygen;
     
     // Start is called before the first frame update
     void Start()
     {
+        timer = 0;
         helperList = new Stack<Helper>();
         Helper[] allHelpers = FindObjectsOfType<Helper>();
         foreach (var helper in allHelpers)
@@ -40,7 +50,18 @@ public class Organ : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if (SceneManager.GetActiveScene().name == "scene2")
+        {
+            CreateOxygen();
+            if (oxygenated)
+            {
+                oxygen.SetActive(true);
+            }
+            else
+            {
+                oxygen.SetActive(false);
+            }
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -51,7 +72,7 @@ public class Organ : MonoBehaviour
         bacteriaObject.SetActive(false);
         hasBacteria = false;
         helperList.Push(other.GetComponent<Helper>());
-
+        
         
     }
 
@@ -61,23 +82,49 @@ public class Organ : MonoBehaviour
     }
 
     void OnMouseDown() {
-        Debug.Log("organ");
         if(isStart) {
-            Debug.Log("Yay?");
-            if (helperList.Count > 0) {
-                Debug.Log(helperList.Peek().gameObject.name);
-                if (helperList.Peek().isAvailable) {
-                    Debug.Log("Yay!");
-                    helperList.Peek().agent.SetDestination(target.position);
-                    helperList.Peek().isAvailable = false;
-            }
+            if (helperList.Peek().isAvailable) {
+                helperList.Peek().agent.SetDestination(target.position);
+                helperList.Peek().isAvailable = false;
             }
             
         } else {
             isStart = true;
-
         }
+    }
+
+    void CreateOxygen()
+    {
+        timer += Time.deltaTime;
         
+        if (this.name == "Lungs")
+        {
+            if (timer > interval)
+            {
+                oxygenated = true;
+                timer = 0;
+            }
+        }
+        else
+        {
+            if (oxygenated == false)
+            {
+                if (timer > oxygenInterval)
+                {
+                    updateUI.health--;
+                    timer = 0;
+                }
+            }
+            else
+            {
+                if (timer > oxygenTimer)
+                {
+                    oxygenated = false;
+                    timer = 0;
+                }
+            }
+            
+        }
         
     }
 
