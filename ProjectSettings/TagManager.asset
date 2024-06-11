@@ -6,6 +6,7 @@ TagManager:
   tags:
   - organ
   - bacteria
+  - oxygen
   layers:
   - Default
   - TransparentFX

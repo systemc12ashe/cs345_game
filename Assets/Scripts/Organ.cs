@@ -1,8 +1,11 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.SceneManagement;
+using Random = System.Random;
 
 public class Organ : MonoBehaviour
 {
@@ -11,6 +14,11 @@ public class Organ : MonoBehaviour
     public bool isStart = true;
     public int numHelpers;
     public Stack<Helper> helperList;
+    private float interval = 3.0f;
+    private float timer;
+    public int oxygenCount;
+    public GameObject oxygen;
+    
 
     public bool isBacteriaSpawnable = false;
     protected bool hasBacteria = false;
@@ -25,6 +33,8 @@ public class Organ : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        timer = 0;
+        oxygenCount = 0;
         helperList = new Stack<Helper>();
         Helper[] allHelpers = FindObjectsOfType<Helper>();
         foreach (var helper in allHelpers)
@@ -40,7 +50,18 @@ public class Organ : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if (SceneManager.GetActiveScene().name == "scene2")
+        {
+            CreateOxygen();
+            if (oxygenCount > 0)
+            {
+                oxygen.SetActive(true);
+            }
+            else
+            {
+                oxygen.SetActive(false);
+            }
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -57,8 +78,10 @@ public class Organ : MonoBehaviour
     }
 
     void OnMouseDown() {
-        Debug.Log("organ");
         if(isStart) {
+            if (helperList.Peek().isAvailable) {
+                helperList.Peek().agent.SetDestination(target.position);
+                helperList.Peek().isAvailable = false;
             Debug.Log("Yay?");
             if (helperList.Count > 0) {
                 Debug.Log(helperList.Peek().gameObject.name);
@@ -71,10 +94,17 @@ public class Organ : MonoBehaviour
             
         } else {
             isStart = true;
-
         }
-        
-        
+    }
+
+    void CreateOxygen()
+    {
+        timer += Time.deltaTime;
+        if (timer>interval)
+        {
+            oxygenCount += 1;
+            timer = 0;
+        }
     }
 
     void SpawnBacteria()
