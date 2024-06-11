@@ -24,9 +24,9 @@ public class AgentController : MonoBehaviour
         // Check for boundary constraints
         if (spawnArea != null)
         {
-            Vector3 clampedPosition = spawnArea.transform.position;
-            clampedPosition.x = Mathf.Clamp(transform.position.x, clampedPosition.x - spawnArea.transform.localScale.x / 2, clampedPosition.x + spawnArea.transform.localScale.x / 2);
-            clampedPosition.y = Mathf.Clamp(transform.position.y, clampedPosition.y - spawnArea.transform.localScale.y / 2, clampedPosition.y + spawnArea.transform.localScale.y / 2);
+            Vector3 clampedPosition = transform.position;
+            clampedPosition.x = Mathf.Clamp(transform.position.x, spawnArea.transform.position.x - spawnArea.transform.localScale.x / 2, spawnArea.transform.position.x + spawnArea.transform.localScale.x / 2);
+            clampedPosition.y = Mathf.Clamp(transform.position.y, spawnArea.transform.position.y - spawnArea.transform.localScale.y / 2, spawnArea.transform.position.y + spawnArea.transform.localScale.y / 2);
             transform.position = clampedPosition;
         }
 
@@ -71,6 +71,7 @@ public class AgentController : MonoBehaviour
         yield return new WaitForSeconds(2f);
         cutSpawner.RemoveCut(cut); // Notify the spawner that the cut has been removed
         Destroy(cut);
+        PlateletGameManager.Instance.AddScore(1);
         Debug.Log("Cut fixed and destroyed.");
     }
 

@@ -17,25 +17,30 @@ public class CutSpawner : MonoBehaviour
         InvokeRepeating("SpawnCut", 2f, spawnInterval);
     }
 
-    void SpawnCut()
+void SpawnCut()
+{
+    if (activeCuts.Count < maxCuts)
     {
-        if (activeCuts.Count < maxCuts)
+        // Get the bounds of the spawn area
+        Bounds bounds = spawnArea.GetComponent<Renderer>().bounds;
+
+        // Define a buffer distance to ensure cuts don't spawn too close to obstacles
+        float bufferDistance = 1f;
+
+        // Generate a random position within the spawn area, considering the buffer distance
+        Vector3 randomPosition;
+        do
         {
-            // Get the bounds of the spawn area
-            Bounds bounds = spawnArea.GetComponent<Renderer>().bounds;
-
-            // Generate a random position within the spawn area
-            Vector3 randomPosition;
-            do
-            {
-                randomPosition = new Vector3(Random.Range(bounds.min.x, bounds.max.x), Random.Range(bounds.min.y, bounds.max.y), 0);
-            }
-            while (IsPositionOnObstacle(randomPosition));
-
-            GameObject newCut = Instantiate(cutPrefab, randomPosition, Quaternion.identity);
-            activeCuts.Add(newCut);
+            randomPosition = new Vector3(Random.Range(bounds.min.x + bufferDistance, bounds.max.x - bufferDistance),
+                                         Random.Range(bounds.min.y + bufferDistance, bounds.max.y - bufferDistance), 0);
         }
+        while (IsPositionOnObstacle(randomPosition));
+
+        GameObject newCut = Instantiate(cutPrefab, randomPosition, Quaternion.identity);
+        activeCuts.Add(newCut);
     }
+}
+
 
     private bool IsPositionOnObstacle(Vector3 position)
     {
@@ -58,4 +63,3 @@ public class CutSpawner : MonoBehaviour
         }
     }
 }
- 
