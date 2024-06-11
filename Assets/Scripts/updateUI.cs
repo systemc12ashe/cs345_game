@@ -32,13 +32,9 @@ public class updateUI : MonoBehaviour
             die();
         }
 
-        if (scoreValue == 8)
+        if (scoreValue == 8 || Input.GetKeyDown(KeyCode.K))
         {
             win();
-        }
-        if (Input.GetKeyDown(KeyCode.K))
-        {
-            scoreValue = 8;
         }
         info.text = "Score: " + scoreValue.ToString();
         Slide.value = health;

@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/scene2.unity
     guid: 414cf7791c2063a4d88534e41a0d886e
+  - enabled: 1
+    path: Assets/Scenes/PlateletLevel.unity
+    guid: 7b253b8949ab247668058b9b9e545c20
   m_configObjects: {}

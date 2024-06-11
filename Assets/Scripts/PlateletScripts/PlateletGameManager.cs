@@ -1,16 +1,19 @@
+using System;
 using UnityEngine;
 using TMPro;
 using System.Collections;
+using UnityEngine.UI;
 
 public class PlateletGameManager : MonoBehaviour
 {
     public static PlateletGameManager Instance;
 
     public int score = 0;
-    public int health = 100;
+    private int health = 50;
+    public Slider slide;
 
     public TextMeshProUGUI scoreText;
-    public TextMeshProUGUI healthText;
+    // public TextMeshProUGUI healthText;
 
     public GameObject winScreen;
     public GameObject loseScreen;
@@ -54,7 +57,7 @@ public class PlateletGameManager : MonoBehaviour
         score += points;
         UpdateUI();
 
-        if (score >= 15)
+        if (score >= 5)
         {
             ShowWinScreen();
         }
@@ -74,7 +77,7 @@ public class PlateletGameManager : MonoBehaviour
     private void UpdateUI()
     {
         scoreText.text = "Score: " + score;
-        healthText.text = "Health: " + health;
+        slide.value = health;
     }
 
     private void ShowWinScreen()
