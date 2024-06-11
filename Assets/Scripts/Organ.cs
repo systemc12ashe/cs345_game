@@ -82,14 +82,6 @@ public class Organ : MonoBehaviour
             if (helperList.Peek().isAvailable) {
                 helperList.Peek().agent.SetDestination(target.position);
                 helperList.Peek().isAvailable = false;
-            Debug.Log("Yay?");
-            if (helperList.Count > 0) {
-                Debug.Log(helperList.Peek().gameObject.name);
-                if (helperList.Peek().isAvailable) {
-                    Debug.Log("Yay!");
-                    helperList.Peek().agent.SetDestination(target.position);
-                    helperList.Peek().isAvailable = false;
-            }
             }
             
         } else {
