@@ -9,14 +9,14 @@ public class updateUI : MonoBehaviour
     public GameObject gameOverScreen;
     public GameObject gameEndScreeen;
     public static int scoreValue = 0;
-    public static int health = 8;
+    public static int health;
     public TMP_Text info;
 
     public Slider Slide;
     // Start is called before the first frame update
     void Start()
     {
-        health = 10;
+        health = 20;
         scoreValue = 0;
         info =GetComponentInChildren<TMP_Text>();
         if(info==null)
@@ -32,15 +32,15 @@ public class updateUI : MonoBehaviour
             die();
         }
 
-        if (scoreValue == 10)
+        if (scoreValue == 8)
         {
             win();
         }
         if (Input.GetKeyDown(KeyCode.K))
         {
-            scoreValue = 10;
+            scoreValue = 8;
         }
-        info.text = "Health: " + health.ToString() + "\nScore: " + scoreValue.ToString();
+        info.text = "\nScore: " + scoreValue.ToString();
         Slide.value = health;
 
     }

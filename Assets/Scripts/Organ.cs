@@ -14,7 +14,7 @@ public class Organ : MonoBehaviour
     public bool isStart = true;
     public int numHelpers;
     public Stack<Helper> helperList;
-
+    public bool oxygenated = false;
 
     public bool isBacteriaSpawnable = false;
     protected bool hasBacteria = false;
@@ -26,15 +26,15 @@ public class Organ : MonoBehaviour
 
     
     private float interval = 3.0f;
+    private float oxygenInterval = 4.0f;
+    private float oxygenTimer = 2.0f;
     private float timer;
-    public int oxygenCount;
     public GameObject oxygen;
     
     // Start is called before the first frame update
     void Start()
     {
         timer = 0;
-        oxygenCount = 0;
         helperList = new Stack<Helper>();
         Helper[] allHelpers = FindObjectsOfType<Helper>();
         foreach (var helper in allHelpers)
@@ -53,7 +53,7 @@ public class Organ : MonoBehaviour
         if (SceneManager.GetActiveScene().name == "scene2")
         {
             CreateOxygen();
-            if (oxygenCount > 0)
+            if (oxygenated)
             {
                 oxygen.SetActive(true);
             }
@@ -68,7 +68,7 @@ public class Organ : MonoBehaviour
     {
         bacteriaObject.SetActive(false);
         helperList.Push(other.GetComponent<Helper>());
-
+        
         
     }
 
@@ -92,11 +92,36 @@ public class Organ : MonoBehaviour
     void CreateOxygen()
     {
         timer += Time.deltaTime;
-        if (timer>interval)
+        
+        if (this.name == "Lungs")
         {
-            oxygenCount += 1;
-            timer = 0;
+            if (timer > interval)
+            {
+                oxygenated = true;
+                timer = 0;
+            }
         }
+        else
+        {
+            if (oxygenated == false)
+            {
+                if (timer > oxygenInterval)
+                {
+                    updateUI.health--;
+                    timer = 0;
+                }
+            }
+            else
+            {
+                if (timer > oxygenTimer)
+                {
+                    oxygenated = false;
+                    timer = 0;
+                }
+            }
+            
+        }
+        
     }
 
     void SpawnBacteria()
