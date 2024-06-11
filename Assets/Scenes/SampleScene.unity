@@ -9601,6 +9601,7 @@ MonoBehaviour:
   textComponent: {fileID: 0}
   happyHelper: {fileID: 239681342}
   textBox: {fileID: 1622659603}
+  l3_tut: 1
 --- !u!1 &1979497907
 GameObject:
   m_ObjectHideFlags: 0
@@ -11158,15 +11159,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 214056239498806077, guid: 161e590873c894624a1eca8047172eed, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2283354767831783061, guid: 161e590873c894624a1eca8047172eed, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3734976609356433300, guid: 161e590873c894624a1eca8047172eed, type: 3}
       propertyPath: m_Name
       value: TextObject
+      objectReference: {fileID: 0}
+    - target: {fileID: 5432803371677041539, guid: 161e590873c894624a1eca8047172eed, type: 3}
+      propertyPath: m_text
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 7101495336163053704, guid: 161e590873c894624a1eca8047172eed, type: 3}
       propertyPath: m_LocalPosition.x
