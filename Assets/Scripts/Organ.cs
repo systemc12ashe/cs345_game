@@ -74,7 +74,6 @@ public class Organ : MonoBehaviour
                 helperList.Peek().agent.SetDestination(target.position);
                 helperList.Peek().isAvailable = false;
             }
-            }
             
         } else {
             isStart = true;
