@@ -40,7 +40,7 @@ public class updateUI : MonoBehaviour
         {
             scoreValue = 8;
         }
-        info.text = "\nScore: " + scoreValue.ToString();
+        info.text = "Score: " + scoreValue.ToString();
         Slide.value = health;
 
     }
