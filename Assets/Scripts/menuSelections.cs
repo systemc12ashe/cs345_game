@@ -27,7 +27,7 @@ public class menuSelections : MonoBehaviour
         
         if (Input.GetKeyDown(KeyCode.R))
         {
-            startGame();   
+            LevelOne();   
         }
     }
 
@@ -36,7 +36,12 @@ public class menuSelections : MonoBehaviour
         SceneManager.LoadScene(0);
     }
     
-    public void startGame()
+    public void LevelOne()
+    {
+        SceneManager.LoadScene(2);
+    }
+    
+    public void LevelTwo()
     {
         SceneManager.LoadScene(1);
     }
@@ -54,4 +59,5 @@ public class menuSelections : MonoBehaviour
             menu.SetActive(false);
         }
     }
+    
 }

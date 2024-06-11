@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.SceneManagement;
@@ -13,21 +14,37 @@ public class Organ : MonoBehaviour
     public bool isStart = true;
     public int numHelpers;
     public Stack<Helper> helperList;
+    public bool oxygenated = false;
+
+    public bool isBacteriaSpawnable = false;
+    protected bool hasBacteria = false;
+
+    public GameObject bacteriaObject;
+
+    public float bacteriaSpawnTime = 20;
+    public float bacteriaOnset = 0;
+
+    
     private float interval = 3.0f;
+    private float oxygenInterval = 4.0f;
+    private float oxygenTimer = 2.0f;
     private float timer;
-    public int oxygenCount;
+    public GameObject oxygen;
     
     // Start is called before the first frame update
     void Start()
     {
         timer = 0;
-        oxygenCount = 0;
         helperList = new Stack<Helper>();
         Helper[] allHelpers = FindObjectsOfType<Helper>();
         foreach (var helper in allHelpers)
         {
             helperList.Push(helper);
         }
+        if(isBacteriaSpawnable){
+            InvokeRepeating("SpawnBacteria", (float) bacteriaOnset, (float) bacteriaSpawnTime);
+        }
+
     }
 
     // Update is called once per frame
@@ -36,12 +53,27 @@ public class Organ : MonoBehaviour
         if (SceneManager.GetActiveScene().name == "scene2")
         {
             CreateOxygen();
+            if (oxygenated)
+            {
+                oxygen.SetActive(true);
+            }
+            else
+            {
+                oxygen.SetActive(false);
+            }
         }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        if (hasBacteria) {
+            updateUI.scoreValue += 1;
+        }
+        bacteriaObject.SetActive(false);
+        hasBacteria = false;
         helperList.Push(other.GetComponent<Helper>());
+        
+        
     }
 
     private void OnTriggerExit2D(Collider2D other)
@@ -55,6 +87,7 @@ public class Organ : MonoBehaviour
                 helperList.Peek().agent.SetDestination(target.position);
                 helperList.Peek().isAvailable = false;
             }
+            
         } else {
             isStart = true;
         }
@@ -63,10 +96,45 @@ public class Organ : MonoBehaviour
     void CreateOxygen()
     {
         timer += Time.deltaTime;
-        if (timer>interval)
+        
+        if (this.name == "Lungs")
         {
-            oxygenCount += 1;
-            timer = 0;
+            if (timer > interval)
+            {
+                oxygenated = true;
+                timer = 0;
+            }
+        }
+        else
+        {
+            if (oxygenated == false)
+            {
+                if (timer > oxygenInterval)
+                {
+                    updateUI.health--;
+                    timer = 0;
+                }
+            }
+            else
+            {
+                if (timer > oxygenTimer)
+                {
+                    oxygenated = false;
+                    timer = 0;
+                }
+            }
+            
+        }
+        
+    }
+
+    void SpawnBacteria()
+    {
+        if (!hasBacteria) {
+            hasBacteria = true;
+            Debug.Log(gameObject.name);
+            //Instantiate(bacteriaInstance, transform.position, transform.rotation);
+            bacteriaObject.SetActive(true);
         }
     }
 }

@@ -7,6 +7,8 @@ TagManager:
   - organ
   - Cut
   - Obstacle
+  - oxygen
+  - bacteria
   layers:
   - Default
   - TransparentFX

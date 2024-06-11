@@ -6,6 +6,8 @@ using UnityEngine;
 public class EventClick : MonoBehaviour
 {
     public Camera camera;
+
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -30,4 +32,6 @@ public class EventClick : MonoBehaviour
             Debug.Log("no hit");
         }
     }
+
+    
 }
