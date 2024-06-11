@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.SceneManagement;
@@ -16,6 +17,7 @@ public class Organ : MonoBehaviour
     private float interval = 3.0f;
     private float timer;
     public int oxygenCount;
+    public GameObject oxygen;
     
     // Start is called before the first frame update
     void Start()
@@ -36,6 +38,14 @@ public class Organ : MonoBehaviour
         if (SceneManager.GetActiveScene().name == "scene2")
         {
             CreateOxygen();
+            if (oxygenCount > 0)
+            {
+                oxygen.SetActive(true);
+            }
+            else
+            {
+                oxygen.SetActive(false);
+            }
         }
     }
 

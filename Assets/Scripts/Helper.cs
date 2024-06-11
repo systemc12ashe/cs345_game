@@ -11,6 +11,8 @@ public class Helper : MonoBehaviour
     public NavMeshAgent agent;
     public bool hasOxygen = false;
     public bool isAvailable = true;
+    public GameObject oxygenObj;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -36,11 +38,13 @@ public class Helper : MonoBehaviour
             isAvailable = true;
             if (hasOxygen)
             {
+                oxygenObj.SetActive(false);
                 hasOxygen = false;
                 other.GetComponent<Organ>().oxygenCount+=1;
             }
             else
             {
+                oxygenObj.SetActive(true);
                 hasOxygen = true;
                 other.GetComponent<Organ>().oxygenCount-=1;
             }
