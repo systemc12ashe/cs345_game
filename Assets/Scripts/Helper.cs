@@ -36,24 +36,22 @@ public class Helper : MonoBehaviour
         if(other.gameObject.CompareTag("organ"))
         {
             isAvailable = true;
-            if (hasOxygen)
+            if (hasOxygen && other.gameObject.name != "Lungs")
             {
                 oxygenObj.SetActive(false);
                 hasOxygen = false;
-                other.GetComponent<Organ>().oxygenCount+=1;
+                updateUI.health++;
+                updateUI.scoreValue++;
+                other.GetComponent<Organ>().oxygenated = true;
+                
             }
             else
             {
                 oxygenObj.SetActive(true);
                 hasOxygen = true;
-                other.GetComponent<Organ>().oxygenCount-=1;
+                other.GetComponent<Organ>().oxygenated = false;
             }
         }
-
-        // if(other.gameObject.CompareTag("bacteria")) {
-        //     Debug.Log("touch bacteria");
-        //     other.gameObject.SetActive(false);
-        // }
     }
 
 }
