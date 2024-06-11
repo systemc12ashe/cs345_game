@@ -12,7 +12,7 @@ public class Helper : MonoBehaviour
     public bool hasOxygen = false;
     public bool isAvailable = true;
     public GameObject oxygenObj;
-    
+    private Transform bacteria;
     // Start is called before the first frame update
     void Start()
     {
@@ -49,6 +49,11 @@ public class Helper : MonoBehaviour
                 other.GetComponent<Organ>().oxygenCount-=1;
             }
         }
+
+        // if(other.gameObject.CompareTag("bacteria")) {
+        //     Debug.Log("touch bacteria");
+        //     other.gameObject.SetActive(false);
+        // }
     }
 
 }
