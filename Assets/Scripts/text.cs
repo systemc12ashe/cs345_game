@@ -16,6 +16,7 @@ public class text : MonoBehaviour
     public GameObject textBox;
 
     static bool l3_tut = false;
+    private string[] l3_tut_strings = {"hi there! welcome to day 3! Today you will be fighting viruses with white blood cells!", "White Blood Cells are your body's way of fighting diseases.", "They are like a special team of virus fighting ninjas!", "Move around using the arrow keys to see if you can find an organ that has a nasty virus.", "Double click on it to send your white blood cell to go take it down!!!"};
 
     void Start() {
         textComponent = GetComponent<TMP_Text>();
@@ -24,23 +25,32 @@ public class text : MonoBehaviour
     }
     private void Update() {
         if(l3_tut) {
-            StartCoroutine(TextDisplay("hi there! welcome to day 3! today you will be fighting viruses with white blood cells!"));
+            StartCoroutine(TextDisplay(l3_tut_strings));
             l3_tut = false;
         }
     }
 
-    public IEnumerator TextDisplay(string sentence) {
-        currText = sentence;
+    public IEnumerator TextDisplay(string[] sentences) {
         isTyping = true;
         textBox.SetActive(true);
         happyHelper.SetActive(true);
-        foreach (char c in currText)
+        foreach (string s in sentences)
         {
-            subsection += c;
-            textComponent.text = subsection;
-            yield return new WaitForSeconds(0.05f);
+            textComponent.text = "";
+            subsection = "";
+            currText = s;
+            foreach (char c in currText)
+            {
+                
+                subsection += c;
+                textComponent.text = subsection;
+                yield return new WaitForSeconds(0.05f);
+            }
+            yield return new WaitForSeconds(1.0f);
+            
         }
-        yield return new WaitForSeconds(3.0f);
+        
+        yield return new WaitForSeconds(2.0f);
         textComponent.text = "";
         textBox.SetActive(false);
         happyHelper.SetActive(false);

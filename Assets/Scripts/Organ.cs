@@ -17,7 +17,7 @@ public class Organ : MonoBehaviour
 
     public GameObject bacteriaObject;
 
-    public float bacteriaSpawnTime = 0;
+    public float bacteriaSpawnTime = 20;
     public float bacteriaOnset = 0;
 
     
@@ -32,7 +32,7 @@ public class Organ : MonoBehaviour
             helperList.Push(helper);
         }
         if(isBacteriaSpawnable){
-            InvokeRepeating("SpawnBacteria", bacteriaOnset, bacteriaSpawnTime);
+            InvokeRepeating("SpawnBacteria", (float) bacteriaOnset, (float) bacteriaSpawnTime);
         }
 
     }
@@ -45,7 +45,11 @@ public class Organ : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        if (hasBacteria) {
+            updateUI.scoreValue += 1;
+        }
         bacteriaObject.SetActive(false);
+        hasBacteria = false;
         helperList.Push(other.GetComponent<Helper>());
 
         
