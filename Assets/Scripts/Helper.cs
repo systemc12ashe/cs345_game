@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -8,7 +9,7 @@ public class Helper : MonoBehaviour
 {
     [SerializeField] Transform target;
     public NavMeshAgent agent;
-
+    public bool hasOxygen = false;
     public bool isAvailable = true;
 
     private Transform bacteria;
@@ -23,7 +24,6 @@ public class Helper : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
         //agent.SetDestination(target.position);
 
         if (Vector3.Distance(agent.destination, transform.position) <= .01f)
@@ -33,11 +33,19 @@ public class Helper : MonoBehaviour
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
-        Debug.Log("collide");
-        if(other.gameObject.CompareTag("organ")) {
+        if(other.gameObject.CompareTag("organ"))
+        {
             isAvailable = true;
-            Debug.Log("enter");
-            // other.gameObject.child.SetActive(false);
+            if (hasOxygen)
+            {
+                hasOxygen = false;
+                other.GetComponent<Organ>().oxygenCount+=1;
+            }
+            else
+            {
+                hasOxygen = true;
+                other.GetComponent<Organ>().oxygenCount-=1;
+            }
         }
 
         // if(other.gameObject.CompareTag("bacteria")) {
