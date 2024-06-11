@@ -15,13 +15,13 @@ public class text : MonoBehaviour
     public GameObject happyHelper;
     public GameObject textBox;
 
-    static bool l3_tut = false;
+    public bool l3_tut = false;
     private string[] l3_tut_strings = {"hi there! welcome to day 3! Today you will be fighting viruses with white blood cells!", "White Blood Cells are your body's way of fighting diseases.", "They are like a special team of virus fighting ninjas!", "Move around using the arrow keys to see if you can find an organ that has a nasty virus.", "Double click on it to send your white blood cell to go take it down!!!"};
 
     void Start() {
         textComponent = GetComponent<TMP_Text>();
         //StartCoroutine(TextDisplay("hi there! welcome to day 3! today you will be fighting viruses with white blood cells!"));
-        l3_tut = true;
+        
     }
     private void Update() {
         if(l3_tut) {
